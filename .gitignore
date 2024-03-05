@@ -1,0 +1,14 @@
+.venv
+.data
+.data_*
+.mypy_cache
+*.pyc
+__pycache__
+.idea
+.DS_Store
+.local
+cron-logs
+data
+
+dist
+*.egg-info
