@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pyhocon-dantic"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="Yuhan Wei", email="weiyuhan@pku.edu.cn" },
 ]
@@ -17,9 +17,8 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    'pydantic==2.6.2',
-    'pyhocon==0.3.60',
-    'pydantic-settings==2.2.1'
+    'pyhocon>=0.3.60',
+    'pydantic-settings>=2.2.1'
 ]
 
 [project.optional-dependencies]
