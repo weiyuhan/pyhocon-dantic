@@ -8,13 +8,13 @@ from pydantic_settings import BaseSettings, PydanticBaseSettingsSource
 
 
 class HoconConfigSettingsSource(PydanticBaseSettingsSource):
-    def __init__(self, settings_cls: type[BaseSettings], config_path: str):
+    def __init__(self, settings_cls: Type[BaseSettings], config_path: str):
         self.hocon_config = pyhocon.ConfigFactory.parse_file(config_path)
         super().__init__(settings_cls)
 
     def get_field_value(
         self, field: FieldInfo, field_name: str
-    ) -> tuple[Any, str, bool]:
+    ) -> Tuple[Any, str, bool]:
         if field.alias or field.validation_alias:
             field_name = str(field.alias) or str(field.validation_alias)
             value = self.hocon_config.get(field.alias)
@@ -34,7 +34,7 @@ class HoconConfigSettingsSource(PydanticBaseSettingsSource):
             return list(value)
         return json.loads(value)
 
-    def __call__(self) -> dict[str, Any]:
+    def __call__(self) -> Dict[str, Any]:
         d: Dict[str, Any] = {}
         for field_name, field in self.settings_cls.model_fields.items():
             field_value, field_key, value_is_complex = self.get_field_value(
